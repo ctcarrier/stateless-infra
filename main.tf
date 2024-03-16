@@ -7,6 +7,18 @@ terraform {
   }
 }
 
+resource "scalr_provider_configuration" "aws-oidc" {
+  name                   = "stateless_aws_oidc"
+  account_id             = "acc-v0o9qa6ciiuoucu0s"
+  export_shell_variables = false
+  environments           = ["*"]
+  aws {
+    credentials_type = "oidc"
+    role_arn         = "arn:aws:iam::453563410738:role/StatelessScalr"
+    audience         = "stateless-audience"    
+  }
+}
+
 provider "aws" {  
   region  = var.aws_region
 }
