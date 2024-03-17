@@ -56,7 +56,7 @@ resource "aws_eks_cluster" "stateless_cluster" {
     security_group_ids = [aws_security_group.stateless_sg.id]
   }
 
-  depends_on = [aws_iam_role_policy_attachment.eks_cluster_attach_policy]
+  depends_on = [aws_iam_role_policy_attachment.eks_cluster_attach_policy, aws_iam_role.stateless_cluster_role]
 }
 
 resource "aws_iam_role" "stateless_cluster_role" {
